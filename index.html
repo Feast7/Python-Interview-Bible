@@ -4,22 +4,77 @@
   <meta charset="UTF-8">
   <title>Python 面试宝典</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <!-- 引入官方主题样式 -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  
+  <!-- 使用饿了么的 UNPKG 镜像加速，防止官方 CDN 被墙导致样式和脚本加载失败 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/docsify@4/lib/themes/vue.css">
+  
+  <style>
+    /* 强制防呆样式：如果侧边栏由于各种原因没加载出来，强制给左侧留出空间并显示基础样式 */
+    .sidebar {
+      background-color: #f8f8f8;
+    }
+  </style>
 </head>
 <body>
-  <div id="app">加载中...</div>
+
+  <!-- 【避坑大招】直接把导航写在 HTML 里，彻底放弃读取外部 _sidebar.md 文件的逻辑 -->
+  <!-- 这样可以 100% 避开由于 GitHub Pages 缓存延迟、路径不对导致的 404 无法加载问题 -->
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-button">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  
+  <aside class="sidebar">
+    <h1 class="app-name">
+      <a class="app-name-link" data-nosearch="" href="#/">Python-Interview-Bible</a>
+    </h1>
+    <div class="sidebar-nav">
+      <!-- ⚠️ 在这里直接写你的目录 ⚠️ -->
+      <ul>
+        <li><strong>Python 核心</strong>
+          <ul>
+            <li><a href="#/Python面试宝典-2020">Python面试宝典-2020</a></li>
+          </ul>
+        </li>
+        <li><strong>数据分析师 SQL 专区</strong>
+          <ul>
+            <li><a href="#/数据分析师SQL面试宝典-1">SQL面试宝典-1</a></li>
+            <li><a href="#/数据分析师SQL面试宝典-2">SQL面试宝典-2</a></li>
+            <li><a href="#/数据分析师SQL面试宝典-3">SQL面试宝典-3</a></li>
+            <li><a href="#/数据分析师SQL面试宝典-4">SQL面试宝典-4</a></li>
+          </ul>
+        </li>
+        <li><strong>其他方向</strong>
+          <ul>
+            <li><a href="#/数据分析师面试宝典">数据分析师面试宝典</a></li>
+            <li><a href="#/机器学习面试宝典">机器学习面试宝典</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <section class="content">
+      <article class="markdown-section" id="main">
+        加载中...
+      </article>
+    </section>
+  </main>
+
   <script>
     window.$docsify = {
-      name: 'Python-Interview-Bible', // 侧边栏顶部的标题
-      repo: '', // 你的 GitHub 仓库地址（可选）
-      loadSidebar: true, // 关键：开启定制侧边栏功能
-      subMaxLevel: 2     // 关键：同时提取 Markdown 内部的 h2 标题作为子菜单
+      name: 'Python-Interview-Bible',
+      // 关键：因为上面我们已经把导航栏写死在 HTML 里了，所以这里必须关闭自动加载外部侧边栏
+      loadSidebar: false, 
+      // 默认首页
+      homepage: 'Python面试宝典-2020.md'
     }
   </script>
-  <!-- Docsify 核心脚本 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  
+  <!-- 引入加速后的 Docsify 核心脚本 -->
+  <script src="https://npm.elemecdn.com/docsify@4/lib/docsify.min.js"></script>
 </body>
 </html>
